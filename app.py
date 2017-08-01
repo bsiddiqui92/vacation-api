@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Flask
 from flask_restful import Api
 
-#from resources.employee import Employee
+from resources.employee import Employee
 from resources.vacation import Vacation
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sqluser:art@1538@welcome.meridi
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
-#api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
+api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
 api.add_resource(Vacation, '/request/<string:employee_id>/<string:status>', '/request')
 
 

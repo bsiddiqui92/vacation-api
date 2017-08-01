@@ -20,7 +20,7 @@ class RequestModel(db.Model):
 		self.status = status
 
 	@classmethod
-	def get_request_by_id(cls, request_id)
+	def get_request_by_id(cls, request_id):
 		try:
 			return cls.query.filter_by(request_id=request_id).first()
 		except Exception as error:

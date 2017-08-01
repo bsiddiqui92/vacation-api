@@ -1,8 +1,6 @@
-
-
 from flask_restful import Resource, reqparse
 from models.request import RequestModel
-from models.employee import EmployeeModel
+#from models.employee import EmployeeModel
 
 class Vacation(Resource): 
 
@@ -45,7 +43,7 @@ class Vacation(Resource):
 
     def get(self, employee_id, status):
         try: 
-            if EmployeeModel.find_by_id(employee_id):
+            if 1:
                 final = []
                 results = RequestModel.get_employee_vacation(employee_id, status)
                 #add all request to return object
@@ -86,8 +84,8 @@ class Vacation(Resource):
         except Exception as error:
             return {"message": error.message}, 500
 
-    def delete(self):
-        try:
-        except Exception as error:
+    # def delete(self):
+    #     try:
+    #     except Exception as error:
 
 

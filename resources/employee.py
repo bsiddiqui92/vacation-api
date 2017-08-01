@@ -1,8 +1,5 @@
-#Employee resource will handle all api requests to the employee table
-
 from flask_restful import Resource, reqparse
 from models.employee import EmployeeModel
-
 
 
 class Employee(Resource):
@@ -78,7 +75,6 @@ class Employee(Resource):
 			data = Employee.parser.parse_args()
 			employee = EmployeeModel(data['first_name'], data['last_name'], data['email'])
 			employee.delete()
-
 			return {"message": "Employee Added Successfully."}, 201
 		except Exception as error:
 			return {"message": error.message}, 500
