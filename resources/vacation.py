@@ -62,7 +62,7 @@ class Vacation(Resource):
                 return {"data": final}, 200
             else:
                 return {"message": "Employee with given id does not exist."}, 401
-        except Exception, error:
+        except Exception as error:
             return {"message": "error"}, 500
 
     def post(self):

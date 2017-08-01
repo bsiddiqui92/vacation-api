@@ -30,7 +30,7 @@ class EmployeeModel(db.Model):
 		try:
 			db.session.add(self)
 			db.session.commit()		
-		except Exception, error:
+		except Exception as error:
 			raise ValueError(error)
 
 	# def update(self):
