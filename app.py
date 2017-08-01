@@ -5,7 +5,7 @@ from resources.employee import Employee
 from resources.vacation import Vacation
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sqluser:art@1538@welcome.meridianprinting.com/vacation'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sqluser:art@1538@welcome.meridianprinting.com/vacation'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 
