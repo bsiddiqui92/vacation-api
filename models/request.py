@@ -38,5 +38,5 @@ class RequestModel(db.Model):
 		try:
 			db.session.add(self)
 			db.session.commit()
-		except Exception, error:
+		except Exception as error:
 			raise ValueError(error)
