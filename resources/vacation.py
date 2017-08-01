@@ -83,9 +83,3 @@ class Vacation(Resource):
                 return {"message": "Successfully created request"}, 200
         except Exception as error:
             return {"message": error.message}, 500
-
-    # def delete(self):
-    #     try:
-    #     except Exception as error:
-
-
