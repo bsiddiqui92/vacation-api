@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_restful import Api
 
-from resources.employee import Employee
+#from resources.employee import Employee
 from resources.vacation import Vacation
 
 app = Flask(__name__)
