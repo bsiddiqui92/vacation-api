@@ -22,7 +22,7 @@ class EmployeeModel(db.Model):
 	def find_by_email(cls, email):
 		try: 
 			return EmployeeModel.query.filter_by(email=email).first()
-		except Exception, error:
+		except Exception as error:
 			raise ValueError(error)
 
 
@@ -39,5 +39,5 @@ class EmployeeModel(db.Model):
 		try:
 			db.session.delete(self)
 			db.session.commit()
-		except Exception, error:
+		except Exception as error:
 			raise ValueError(error)

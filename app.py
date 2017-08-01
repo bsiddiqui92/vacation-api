@@ -11,6 +11,9 @@ api = Api(app)
 
 api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
 api.add_resource(Vacation, '/request/<string:employee_id>/<string:status>', '/request')
+api.add_resource()
+api.add_resource()
+api.add_resource()
 
 
 
