@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS, cross_origin
 
 from resources.employee import Employee, GetAllEmployees
 from resources.request import Request, ApprovedRequests, PendingRequests
@@ -9,6 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
 'mysql+pymysql://root:password@vacation.caqe8gzbr7wa.us-east-1.rds.amazonaws.com/vacation'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
+CORS(app)
 
 api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
 api.add_resource(GetAllEmployees, '/employee/all')
