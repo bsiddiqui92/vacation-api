@@ -3,7 +3,7 @@ from db import db
 class EmployeeModel(db.Model):
 	__tablename__ = 'employee'
 
-	id = db.Column('employee_id', db.Integer, primary_key=True)
+	employee_id = db.Column('employee_id', db.Integer, primary_key=True)
 	first_name = db.Column('first_name', db.String(30))
 	last_name = db.Column('last_name', db.String(30))
 	email = db.Column('email', db.String(60))
@@ -14,8 +14,23 @@ class EmployeeModel(db.Model):
 		self.email = email
 
 	@classmethod
+	def get_all(cls):
+		employees = cls.query.all()
+		result = []
+		for employee in employees:
+			emp = {
+				'first_name': employee.first_name, 
+				'last_name': employee.last_name, 
+				'email': employee.email
+			} 
+			result.append(emp)
+
+		return result
+
+
+	@classmethod
 	def find_by_id(cls, _id):
-		return cls.query.filter_by(id=_id).first()
+		return cls.query.filter_by(employee_id=_id).first()
 
 	@classmethod
 	def find_by_email(cls, email):

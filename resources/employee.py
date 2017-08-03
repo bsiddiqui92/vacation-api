@@ -2,6 +2,15 @@ from flask_restful import Resource, reqparse
 from models.employee import EmployeeModel
 
 
+class GetAllEmployees(Resource):
+
+	def get(self):
+		try:
+			result = EmployeeModel.get_all(); 
+			return {"data": result}, 200
+		except Exception as error:
+			return {"message": str(error)}, 500
+
 class Employee(Resource):
 
 	parser = reqparse.RequestParser()

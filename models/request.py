@@ -1,15 +1,19 @@
 from db import db
 
+
 class RequestModel(db.Model):
 	__tablename__ = 'request'
 
 	request_id = db.Column('request_id', db.Integer, primary_key=True)
-	employee_id = db.Column('employee_id', db.Integer)
+	employee_id = db.Column('employee_id',  db.Integer, db.ForeignKey('employee.employee_id'))
 	date_from = db.Column(db.Date())
 	date_until = db.Column(db.Date())
 	time_from = db.Column(db.Time())
 	time_until = db.Column(db.Time())
 	status = db.Column(db.String(10))
+
+	employee = db.relationship('EmployeeModel', backref=db.backref('EmployeeModel'), primaryjoin='EmployeeModel.employee_id==RequestModel.employee_id')
+
 
 	def __init__(self, employee_id, date_from, date_until, time_from, time_until, status):
 		self.employee_id = employee_id
@@ -25,6 +29,30 @@ class RequestModel(db.Model):
 			return cls.query.filter_by(request_id=request_id).first()
 		except Exception as error:
 			raise ValueError(error.message)
+
+	@classmethod
+	def get_vacation(cls, status, employee_id):
+		try:
+			if employee_id:
+				results = cls.query \
+				                .filter_by(status=status) \
+				                .filter_by(employee_id=employee_id) \
+				                .all()
+			else:
+				results = cls.query.filter_by(status=status) \
+				                .all()
+
+			requests = []
+			for result in results:
+				request = {
+					"name": str(result.date_from), 
+					"other": result.first_name
+				}
+				requests.append(request)
+
+			return requests
+		except Exception as error:
+			raise ValueError(str(error))
 
 	@classmethod
 	def get_employee_vacation(cls, employee_id, status):
