@@ -13,21 +13,9 @@ class EmployeeModel(db.Model):
 		self.last_name = last
 		self.email = email
 
-	@classmethod
-	def get_all(cls):
-		employees = cls.query.all()
-		result = []
-		for employee in employees:
-			emp = {
-				'first_name': employee.first_name, 
-				'last_name': employee.last_name, 
-				'email': employee.email
-			} 
-			result.append(emp)
-
-		return result
-
-
+	def json(self):
+		return {'first_name': self.first_name, 'last_name': self.last_name, 'email': self.email}
+		
 	@classmethod
 	def find_by_id(cls, _id):
 		return cls.query.filter_by(employee_id=_id).first()

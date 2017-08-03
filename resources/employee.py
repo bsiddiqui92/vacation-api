@@ -1,13 +1,14 @@
 from flask_restful import Resource, reqparse
 from models.employee import EmployeeModel
+import json
 
 
 class GetAllEmployees(Resource):
 
 	def get(self):
 		try:
-			result = EmployeeModel.get_all(); 
-			return {"data": result}, 200
+			#result = EmployeeModel.get_all(); 
+			 return {'items': list(map(lambda x: x.json(), EmployeeModel.query.all()))}
 		except Exception as error:
 			return {"message": str(error)}, 500
 
