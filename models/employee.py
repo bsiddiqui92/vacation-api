@@ -14,7 +14,10 @@ class EmployeeModel(db.Model):
 		self.email = email
 
 	def json(self):
-		return {'first_name': self.first_name, 'last_name': self.last_name, 'email': self.email}
+		return {'employee_id': self.employee_id, 
+				'first_name': self.first_name, 
+				'last_name': self.last_name, 
+				'email': self.email}
 		
 	@classmethod
 	def find_by_id(cls, _id):
