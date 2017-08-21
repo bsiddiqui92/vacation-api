@@ -124,7 +124,8 @@ class PendingRequests(Resource):
 
     def get(self, employee_id):
         try:
-            if employee_id:
+            employee_id = 'hey'
+            if employee_id == 'hey':
                 result = RequestModel.get_employee_vacation('pending', employee_id)
             else:
                 result = RequstModel.get_employee_vacation('pending')
