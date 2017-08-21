@@ -128,8 +128,7 @@ class PendingRequests(Resource):
             #     return {"data": 'biatch'}, 200
             #     result = RequestModel.get_vacation('pending', employee_id)
             # else:
-                return {"data": 'biatch is a no go'}, 200
-                result = RequstModel.get_vacation('pending')
+            return {"data": "biatch is a no go"}, 200
 
             return { "data" : result}, 200
         except Exception as error:
