@@ -89,7 +89,7 @@ class RequestModel(db.Model):
 		db.session.commit()
 
 	@classmethod
-	def approve_request(cls, request_id): 
+	def deny_request(cls, request_id): 
 		request = cls.query.filter_by(request_id=request_id).first()
 		request.status = 'denied'
 		db.session.commit()
