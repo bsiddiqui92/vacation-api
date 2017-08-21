@@ -124,7 +124,7 @@ class PendingRequests(Resource):
 
     def get(self):
         try:
-            result = RequstModel.get_vacation('pending')
+            result = RequestModel.get_vacation('pending')
             return { "data" : result}, 200
         except Exception as error:
             return {"message": str(error) }, 500
