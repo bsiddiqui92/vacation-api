@@ -4,23 +4,32 @@ from db import db
 class RequestModel(db.Model):
 	__tablename__ = 'request'
 
-	request_id = db.Column('request_id', db.Integer, primary_key=True)
-	employee_id = db.Column('employee_id',  db.Integer, db.ForeignKey('employee.employee_id'))
-	date_from = db.Column(db.Date())
-	date_until = db.Column(db.Date())
-	time_from = db.Column(db.Time())
-	time_until = db.Column(db.Time())
-	status = db.Column(db.String(10))
+	request_id	= db.Column('request_id', db.Integer, primary_key=True)
+	employee_id	= db.Column('employee_id',  db.Integer, db.ForeignKey('employee.employee_id'))
+	date_from	= db.Column(db.Date())
+	date_until	= db.Column(db.Date())
+	time_from	= db.Column(db.Time())
+	time_until	= db.Column(db.Time())
+	comments	= db.Column(db.String(5000))
+	status		= db.Column(db.String(10))
 
 	employee = db.relationship('EmployeeModel', backref=db.backref('EmployeeModel'), primaryjoin='EmployeeModel.employee_id==RequestModel.employee_id')
 
+	def json(self):
+		return {'employee_id': self.employee_id, 
+				'date_from': self.date_from, 
+				'date_until': self.date_until, 
+				'time_from': self.time_from, 
+				'time_until': self.time_until, 
+				'comments': self.comments}
 
-	def __init__(self, employee_id, date_from, date_until, time_from, time_until, status):
+	def __init__(self, employee_id, date_from, date_until, time_from, time_until, comments, status):
 		self.employee_id = employee_id
 		self.date_from = date_from
 		self.date_until = date_until
 		self.time_from = time_from
 		self.time_until = time_until
+		self.comments = comments
 		self.status = status
 
 	@classmethod
@@ -68,3 +77,5 @@ class RequestModel(db.Model):
 			db.session.commit()
 		except Exception as error:
 			raise ValueError(error)
+
+			

@@ -35,6 +35,11 @@ class Request(Resource):
         help="This field cannot be blank."
     )
 
+    parser.add_argument('comments', 
+        type=str, 
+        required=False, 
+    )
+
     parser.add_argument('status',
         type=str,
         required=False,
@@ -54,7 +59,8 @@ class Request(Resource):
                         'date_from': str(result.date_from), 
                         'date_until': str(result.date_until), 
                         'time_from': str(result.time_from), 
-                        'time_until': str(result.time_until), 
+                        'time_until': str(result.time_until),
+                        'comments': result.comments,  
                         'status': result.status
                     }
                     final.append(temp)
