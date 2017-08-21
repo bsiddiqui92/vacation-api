@@ -116,7 +116,7 @@ class ApprovedRequests(Resource):
 class PendingRequests(Resource):
 
     parser = reqparse.RequestParser()
-    parser.add_argument('employee_id',
+    parser.add_argument('request_id',
         type=str,
         required=False,
         help="This field cannot be blank."
@@ -126,6 +126,23 @@ class PendingRequests(Resource):
         try:
             result = RequestModel.get_vacation('pending')
             return { "data" : result}, 200
+        except Exception as error:
+            return {"message": str(error) }, 500
+
+
+class ApproveRequest(Resource):
+
+    parser = reqparse.RequestParser()
+    parser.add_argument('request_id',
+        type=str,
+        required=False,
+        help="This field cannot be blank."
+    )
+
+    def get(self, request_id):
+        try:
+            result = RequestModel.approve_request(request_id)
+            return {"message": str(result)}, 200
         except Exception as error:
             return {"message": str(error) }, 500
 

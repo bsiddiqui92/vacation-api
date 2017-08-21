@@ -17,6 +17,9 @@ api.add_resource(GetAllEmployees, '/employee/all')
 api.add_resource(Request, '/request/<string:employee_id>/<string:status>', '/request')
 api.add_resource(ApprovedRequests, '/request/approved/<string:employee_id>')
 api.add_resource(PendingRequests, '/requestbystatus/pending')
+api.add_resource(ApproveRequest, '/approverequest/<string:request_id>');
+api.add_resource(DenyRequest, '/denyrequest/<string:request_id>'); 
+
 
 
 #get all vacation request for employee
