@@ -57,7 +57,9 @@ class RequestModel(db.Model):
 					"request_id": result.request_id,
 					"employee_id": result.employee_id,
 					"date_from": str(result.date_from), 
-					"date_until": str(result.date_until)
+					"date_until": str(result.date_until),
+					"comments": result.comments,  
+					"status": result.status 
 				}
 				requests.append(request)
 
