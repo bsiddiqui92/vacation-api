@@ -54,6 +54,7 @@ class RequestModel(db.Model):
 			requests = []
 			for result in results:
 				request = {
+					"request_id": result.request_id,
 					"employee_id": result.employee_id,
 					"date_from": str(result.date_from), 
 					"date_until": str(result.date_until)
