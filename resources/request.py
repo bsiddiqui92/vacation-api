@@ -122,9 +122,11 @@ class PendingRequests(Resource):
         help="This field cannot be blank."
     )
 
-    def get(self):
+    def get(self, employee_id):
         try:
-            
+            if employee_id:
+                result = RequestModel.get_employee_vacation('pending', employee_id)
+            else:
                 result = RequstModel.get_employee_vacation('pending')
 
             return { "data" : result}, 200
