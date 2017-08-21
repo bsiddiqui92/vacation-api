@@ -3,7 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS, cross_origin
 
 from resources.employee import Employee, GetAllEmployees
-from resources.request import Request, ApprovedRequests, PendingRequests
+from resources.request import Request, ApprovedRequests, PendingRequests, ApproveRequest, DenyRequest
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
