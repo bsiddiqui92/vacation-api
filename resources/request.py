@@ -122,7 +122,7 @@ class PendingRequests(Resource):
         help="This field cannot be blank."
     )
 
-    def get(self, employee_id):
+    def get(self):
         try:
             # if employee_id:
             #     return {"data": 'biatch'}, 200
