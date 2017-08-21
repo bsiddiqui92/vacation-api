@@ -124,10 +124,10 @@ class PendingRequests(Resource):
 
     def get(self, employee_id):
         try:
-            if employee_id:
-                return {"data": 'biatch'}, 200
-                result = RequestModel.get_vacation('pending', employee_id)
-            else:
+            # if employee_id:
+            #     return {"data": 'biatch'}, 200
+            #     result = RequestModel.get_vacation('pending', employee_id)
+            # else:
                 return {"data": 'biatch is a no go'}, 200
                 result = RequstModel.get_vacation('pending')
 
