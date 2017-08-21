@@ -40,22 +40,23 @@ class RequestModel(db.Model):
 			raise ValueError(error.message)
 
 	@classmethod
-	def get_vacation(cls, status, employee_id):
+	def get_vacation(cls, status):
 		try:
-			if employee_id:
-				results = cls.query \
-				                .filter_by(status=status) \
-				                .filter_by(employee_id=employee_id) \
-				                .all()
-			else:
-				results = cls.query.filter_by(status=status) \
-				                .all()
+			# if employee_id:
+			# 	results = cls.query \
+			# 	                .filter_by(status=status) \
+			# 	                .filter_by(employee_id=employee_id) \
+			# 	                .all()
+			# else:
+			results = cls.query.filter_by(status=status) \
+			                .all()
 
 			requests = []
 			for result in results:
 				request = {
-					"name": str(result.date_from), 
-					"other": result.first_name
+					"employee_id": result.employee_id,
+					"date_from": str(result.date_from), 
+					"date_until": str(result.date_until)
 				}
 				requests.append(request)
 
@@ -78,4 +79,3 @@ class RequestModel(db.Model):
 		except Exception as error:
 			raise ValueError(error)
 
-			
