@@ -89,7 +89,7 @@ class Request(Resource):
                 request.insert()
                 return {"message": "Successfully created request"}, 200
         except Exception as error:
-            return {"message": error.message}, 500
+            return {"message": 'Error right here'}, 500
 
 
 class ApprovedRequests(Resource):
