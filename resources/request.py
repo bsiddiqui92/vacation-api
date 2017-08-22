@@ -84,7 +84,8 @@ class Request(Resource):
                                         data['date_from'], 
                                         data['date_until'], 
                                         data['time_from'], 
-                                        data['time_until'], 
+                                        data['time_until'],
+                                        data['comments'], 
                                         'pending')
                 request.insert()
                 return {"message": "Successfully created request"}, 200
