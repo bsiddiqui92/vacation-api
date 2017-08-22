@@ -21,7 +21,8 @@ class RequestModel(db.Model):
 				'date_until': self.date_until, 
 				'time_from': self.time_from, 
 				'time_until': self.time_until, 
-				'comments': self.comments}
+				'comments': self.comments, 
+				'status': self.status}
 
 	def __init__(self, employee_id, date_from, date_until, time_from, time_until, comments, status):
 		self.employee_id = employee_id
