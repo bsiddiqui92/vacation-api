@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, Request, reqparse
 from models.request import RequestModel
 from models.employee import EmployeeModel
 
