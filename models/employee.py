@@ -8,7 +8,8 @@ class EmployeeModel(db.Model):
 	last_name = db.Column('last_name', db.String(30))
 	email = db.Column('email', db.String(60))
 
-	def __init__(self, first, last, email):
+	def __init__(self, employee_id=None, first=None, last=None, email=None):
+		self.employee_id = employee_id
 		self.first_name = first
 		self.last_name = last
 		self.email = email
@@ -40,9 +41,9 @@ class EmployeeModel(db.Model):
 
 	# def update(self):
 
-	def delete(self):
+	def delete(self, employee):
 		try:
-			db.session.delete(self)
+			EmployeeModel.query.filter_by(employee_id=employee).delete()
 			db.session.commit()
 		except Exception as error:
 			raise ValueError(error)

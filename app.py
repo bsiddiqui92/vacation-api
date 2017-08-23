@@ -12,15 +12,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 CORS(app)
 
+#Employee Related Endpoint
 api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
 api.add_resource(GetAllEmployees, '/employee/all')
+
+
+#Request Related Endpoint
 api.add_resource(Request, '/request/<string:employee_id>/<string:status>', '/request')
 api.add_resource(ApprovedRequests, '/request/approved/<string:employee_id>')
 api.add_resource(PendingRequests, '/requestbystatus/pending')
 api.add_resource(ApproveRequest, '/approverequest/<string:request_id>');
 api.add_resource(DenyRequest, '/denyrequest/<string:request_id>'); 
-
-
 
 #get all vacation request for employee
 #get list of all company employees

@@ -3,18 +3,14 @@ from models.employee import EmployeeModel
 import json
 
 
-class GetAllEmployees(Resource):
-
-	def get(self):
-		try:
-			#result = EmployeeModel.get_all(); 
-			 return {'items': list(map(lambda x: x.json(), EmployeeModel.query.all()))}
-		except Exception as error:
-			return {"message": str(error)}, 500
-
 class Employee(Resource):
 
 	parser = reqparse.RequestParser()
+	parser.add_argument('employee_id',
+        type=str,
+        required=False,
+        help="This field cannot be blank."
+    )
 	parser.add_argument('first_name',
         type=str,
         required=False,
@@ -83,9 +79,18 @@ class Employee(Resource):
 
 		try:
 			data = Employee.parser.parse_args()
-			employee = EmployeeModel(data['first_name'], data['last_name'], data['email'])
-			employee.delete()
-			return {"message": "Employee Added Successfully."}, 201
+			employee = EmployeeModel()
+			test = employee.delete(data['employee_id'])
+			return {"message": "Employee Removed Successfully."}, 201
 		except Exception as error:
-			return {"message": error.message}, 500
+			return {"message": str(error)}, 500
 
+
+class GetAllEmployees(Resource):
+
+	def get(self):
+		try:
+			#result = EmployeeModel.get_all(); 
+			 return {'items': list(map(lambda x: x.json(), EmployeeModel.query.all()))}
+		except Exception as error:
+			return {"message": str(error)}, 500

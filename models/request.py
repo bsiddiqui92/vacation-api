@@ -43,15 +43,9 @@ class RequestModel(db.Model):
 	@classmethod
 	def get_vacation(cls, status):
 		try:
-			# if employee_id:
-			# 	results = cls.query \
-			# 	                .filter_by(status=status) \
-			# 	                .filter_by(employee_id=employee_id) \
-			# 	                .all()
-			# else:
+
 			results = cls.query.filter_by(status=status) \
 			                .all()
-
 			requests = []
 			for result in results:
 				request = {
@@ -74,7 +68,6 @@ class RequestModel(db.Model):
 			return cls.query.filter_by(employee_id=employee_id).all()
 		else:
 			return cls.query.filter_by(employee_id=employee_id).filter_by(status=status).all()
-
 
 	def insert(self):
 		try:
