@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
+from models.request import RequestModel
 from models.employee import EmployeeModel
+from models.department import DepartmentModel
 import json
 
 
@@ -70,7 +72,6 @@ class Employee(Resource):
 			data = Employee.parser.parse_args()
 			employee = EmployeeModel(data['first_name'], data['last_name'], data['email'])
 			test = employee.insert()
-
 			return {"message": "Employee Added Successfully."}, 201
 		except Exception as error:
 			return {"message": error}, 500
@@ -80,8 +81,8 @@ class Employee(Resource):
 		try:
 			data = Employee.parser.parse_args()
 			employee = EmployeeModel()
-			test = employee.delete(data['employee_id'])
-			return {"message": "Employee Removed Successfully."}, 201
+			employee.delete(data['employee_id'])
+			#return {"message": "Employee Removed Successfully."}, 201
 		except Exception as error:
 			return {"message": str(error)}, 500
 

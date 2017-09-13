@@ -3,7 +3,9 @@ from flask_restful import Api
 from flask_cors import CORS, cross_origin
 
 from resources.employee import Employee, GetAllEmployees
-from resources.request import Request, ApprovedRequests, PendingRequests, ApproveRequest, DenyRequest
+from resources.request import Request, ApprovedRequests, PendingRequests, DeniedRequests, AllRequests, ApproveRequest, DenyRequest
+from resources.department import getAllDepartments
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
@@ -13,22 +15,25 @@ api = Api(app)
 CORS(app)
 
 #Employee Related Endpoint
-api.add_resource(Employee, '/employee', '/employee/<string:field>/<string:value>')
+api.add_resource(Employee, '/employee')
 api.add_resource(GetAllEmployees, '/employee/all')
 
 
 #Request Related Endpoint
 api.add_resource(Request, '/request/<string:employee_id>/<string:status>', '/request')
-api.add_resource(ApprovedRequests, '/request/approved/<string:employee_id>')
-api.add_resource(PendingRequests, '/requestbystatus/pending')
-api.add_resource(ApproveRequest, '/approverequest/<string:request_id>');
-api.add_resource(DenyRequest, '/denyrequest/<string:request_id>'); 
 
-#get all vacation request for employee
-#get list of all company employees
-#get all vacation requests in given date range
-#request a vacation
-#approve/deny vacation request
+api.add_resource(AllRequests, '/requestbystatus/all')
+api.add_resource(ApprovedRequests, '/requestbystatus/approved')
+api.add_resource(PendingRequests, '/requestbystatus/pending')
+api.add_resource(DeniedRequests, '/requestbystatus/denied')
+
+api.add_resource(ApproveRequest, '/approverequest/<string:request_id>')
+api.add_resource(DenyRequest, '/denyrequest/<string:request_id>', '/denyrequest/')
+
+
+# Department Endpoints
+api.add_resource(getAllDepartments, '/departments/all') 
+
 
 if __name__ == '__main__':
 	from db import db
