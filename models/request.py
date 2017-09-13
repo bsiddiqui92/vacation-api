@@ -34,7 +34,7 @@ class RequestModel(db.Model):
 				'status': self.status,
 				'deny_comments': self.deny_comments}
 
-	def __init__(self, employee_id, date_from, date_until, time_from, time_until, comments, status, deny_comments):
+	def __init__(self, employee_id, date_from, date_until, time_from, time_until, comments, status, deny_comments=None):
 		self.employee_id = employee_id
 		self.date_from = date_from
 		self.date_until = date_until
